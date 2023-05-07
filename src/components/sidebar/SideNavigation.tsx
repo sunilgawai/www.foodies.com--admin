@@ -1,11 +1,16 @@
 import SideNavigationIcon from "./SideNavigationIcon";
 import {
-  FaUser, BiHistory, BiCategoryAlt,
+  FaUser, BiHistory, BiCategoryAlt, FaHome,
   MdOutlineProductionQuantityLimits, BsFillBasket2Fill
 } from "react-icons/all";
 
 
 const _navlinks = [
+  {
+    href: '/',
+    route: 'Home',
+    icon: FaHome
+  },
   {
     href: '/categories',
     route: 'Categories',

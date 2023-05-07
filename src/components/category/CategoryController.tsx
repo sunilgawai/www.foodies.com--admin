@@ -15,6 +15,7 @@ interface Props {
 
 const CategoryController: React.FC<Props> = ({ name, isActive, icon, _id, categories, setCategories }) => {
     const [activeCategory, setActiveCategory] = useState<boolean>(isActive);
+    const [isAddingCategory, setIsAddingCategory] = useState(true);
 
     const handleCategoryUpdate = (_id: string) => {
         console.log(_id);

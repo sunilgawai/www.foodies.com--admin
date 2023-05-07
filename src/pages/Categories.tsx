@@ -1,12 +1,16 @@
-import { CategoryController, CategoriesNotFound, CommonHeader } from "../components";
+import { CategoryController, CategoriesNotFound, CommonHeader, CreateCategory } from "../components";
 import { useEffect, useState } from "react";
 import { Categories as ICategories } from "../typings"
 import { BASE_SERVER_URL } from "../constants";
 
 const CategoriesPage = () => {
   const [categories, setCategories] = useState<ICategories>([]);
+  const [isVisible, SetIsVisible] = useState(true);
   const controller = new AbortController();
 
+  const toggleModel = () => {
+    SetIsVisible(!isVisible);
+  }
 
   useEffect(() => {
     const getCategories = () => {
@@ -18,11 +22,16 @@ const CategoriesPage = () => {
     getCategories();
 
     return () => controller.abort();
-  }, []) 
+  }, [])
 
   return (
     <div className='text-white h-full'>
-      <CommonHeader title="Categories" />
+      <CommonHeader toggleModel={toggleModel} title="Categories" />
+
+      <CreateCategory
+        categories={categories}
+        setCategories={setCategories}
+        isVisible={isVisible} />
 
       <div className="container border border-white mt-4">
         {
