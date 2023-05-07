@@ -3,7 +3,7 @@ import Navigation from "./components/navbar/Navigation";
 import Layout from "./components/Layout"
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { CategoriesPage, Home, Orders, Products, Users, History } from "./pages";
+import { CategoriesPage, Home, Orders, Products, Users, History, NewProduct } from "./pages";
 
 const App = () => {
 
@@ -20,6 +20,7 @@ const App = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/categories" element={<CategoriesPage />} />
                 <Route path="/products" element={<Products />} />
+                <Route path="/products/new" element={<NewProduct />} />
                 <Route path="/orders" element={<Orders />} />
                 <Route path="/users" element={<Users />} />
                 <Route path="/history" element={<History />} />

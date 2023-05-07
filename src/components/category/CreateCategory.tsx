@@ -14,7 +14,7 @@ interface Props {
 }
 
 const CreateCategory: React.FC<Props> = ({ isVisible, categories, setCategories }) => {
-  const [iconString, setIconString] = useState<string | undefined>();
+  const [iconImageString, setIconImageString] = useState<string | undefined>();
   // Category Form.
   const [icon, setIcon] = useState<File>();
   console.log('Icon File Selected', icon);
@@ -41,15 +41,22 @@ const CreateCategory: React.FC<Props> = ({ isVisible, categories, setCategories 
       // Set Categories.
       setCategories([...categories, data.category])
     }
+    if (status == 422) {
+      // Notify the error message
+      console.log(data)
+    } else {
+      // log the message
+      console.log(data)
+    }
+    setName('');
+    setIconImageString(undefined);
   }
 
   const onIconSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
     const base64 = await getBase64(e.target.files[0]) as string;
-    setIconString(base64);
+    setIconImageString(base64);
     setIcon(e.target.files[0]);
-    const { files } = e.target;
-    console.log({ file: e.target.files[0], icon, files })
   }
 
   return (
@@ -63,8 +70,8 @@ const CreateCategory: React.FC<Props> = ({ isVisible, categories, setCategories 
           <label htmlFor="icon">
             <img
               className='w-12 h-12'
-              src={iconString || fruitsIcon} alt="icon" />
-            <p className={`absolute m-[5px] left-[22px] text-sm italic z-1 ${iconString ? 'hidden' : 'block'}`}>
+              src={iconImageString || fruitsIcon} alt="icon" />
+            <p className={`absolute m-[5px] left-[22px] text-sm italic z-1 ${iconImageString ? 'hidden' : 'block'}`}>
               Choose Icon
             </p>
           </label>

@@ -5,8 +5,7 @@ import { BASE_SERVER_URL } from "../constants";
 
 const CategoriesPage = () => {
   const [categories, setCategories] = useState<ICategories>([]);
-  const [isVisible, SetIsVisible] = useState(true);
-  const controller = new AbortController();
+  const [isVisible, SetIsVisible] = useState(false);
 
   const toggleModel = () => {
     SetIsVisible(!isVisible);
@@ -21,7 +20,7 @@ const CategoriesPage = () => {
     }
     getCategories();
 
-    return () => controller.abort();
+    return () => new AbortController().abort();
   }, [])
 
   return (

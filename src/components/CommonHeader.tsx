@@ -1,7 +1,12 @@
 import { FC } from 'react';
 import { AiFillPlusSquare } from 'react-icons/ai';
 
-const CommonHeader: FC<{ title: string, toggleModel: () => void }> = ({ title, toggleModel }) => {
+interface Props {
+    title: string
+    toggleModel?: () => void
+}
+
+const CommonHeader: FC<Props> = ({ title, toggleModel }) => {
     return (
         <>
             <div className="flex justify-between items-center">
@@ -12,7 +17,11 @@ const CommonHeader: FC<{ title: string, toggleModel: () => void }> = ({ title, t
                 rounded-md hover:rounded-xl transition-all duration-300
                 ease-in cursor-pointer w-20 flex justify-center items-center
                 border border-green-700 px-3 py-2 mb-2"
-                onClick={()=> toggleModel()}>
+                    onClick={() => {
+                        if (toggleModel) {
+                            toggleModel();
+                        }
+                    }}>
                     <AiFillPlusSquare />
                     <span className="font-semibold italic ml-3">Add</span>
                 </button>
